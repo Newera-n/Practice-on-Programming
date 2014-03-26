@@ -15,16 +15,16 @@ public:
 		Ap = new int[row*column];
 	}
 	int* const operator[](int idx)
-	{   
+	{
 		return &Ap[idx*p_row];
 	}
 	int operator()(int x, int y){
-		const int* a = &Ap[x];
+		int* a = &Ap[x];
 		return a[y];
 	}
 	~Array2()
 	{
-		delete[] Ap;
+		if (Ap == NULL) { delete[] Ap; }
 	};
 };
 int main() {
@@ -49,4 +49,4 @@ int main() {
 	}
 	system("pause");
 	return 0;
-	}it
+}
