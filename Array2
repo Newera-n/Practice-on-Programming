@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+#include <iostream>
+using namespace std;
+class Array2
+{
+public:
+	int *Ap;
+	int p_row, p_column;
+public:
+	Array2(){}
+	Array2(int row, int column){
+		p_row = row;
+		p_column = column;
+		Ap = new int[row*column];
+	}
+	int* const operator[](int idx)
+	{   
+		return &Ap[idx*p_row];
+	}
+	int operator()(int x, int y){
+		const int* a = &Ap[x];
+		return a[y];
+	}
+	~Array2()
+	{
+		delete[] Ap;
+	};
+};
+int main() {
+	Array2 a(3, 4);
+	int i, j;
+	for (i = 0; i < 3; ++i)
+	for (j = 0; j < 4; j++)
+		a[i][j] = i * 4 + j;
+	for (i = 0; i < 3; ++i) {
+		for (j = 0; j < 4; j++) {
+			cout << a(i, j) << ",";
+		}
+		cout << endl;
+	}
+	cout << "next" << endl;
+	Array2 b; 	b = a;
+	for (i = 0; i < 3; ++i) {
+		for (j = 0; j < 4; j++) {
+			cout << b[i][j] << ",";
+		}
+		cout << endl;
+	}
+	system("pause");
+	return 0;
+	}it
